@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-next-app@14:*)",
+      "Read(//c/Users/sayan/Project/BetaZen-InfoTech/**)",
+      "Bash(xcopy:*)",
+      "Bash(npm install:*)",
+      "Bash(npm cache clean:*)",
+      "Bash(npx next build)",
+      "Bash(lsof:*)",
+      "Bash(xargs kill:*)"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\sayan\\Project\\BetaZen-InfoTech\\portfolio-temp",
+      "C:\\Users\\sayan\\AppData\\Local\\npm-cache"
+    ]
+  }
+}
