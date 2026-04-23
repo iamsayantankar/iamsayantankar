@@ -11,6 +11,8 @@ import DetailedSkills from "@/components/sections/DetailedSkills";
 import BlogPreview from "@/components/sections/BlogPreview";
 import ContactSection from "@/components/sections/ContactSection";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const [blogs, projects, services, skills, testimonials, experience, education] = await Promise.all([
     getBlogs(3),
