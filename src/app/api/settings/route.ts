@@ -4,6 +4,8 @@ import { authOptions } from "@/lib/auth";
 import { connectDB } from "@/lib/mongodb";
 import Settings from "@/models/Settings";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   try {
     await connectDB();
