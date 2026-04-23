@@ -3,6 +3,8 @@ import { getBlogBySlug, getBlogs } from "@/lib/data";
 import { notFound } from "next/navigation";
 import BlogPostClient from "./BlogPostClient";
 
+export const dynamic = "force-dynamic";
+
 interface Props { params: Promise<{ slug: string }> }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

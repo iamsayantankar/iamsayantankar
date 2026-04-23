@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import { getBlogs } from "@/lib/data";
 import BlogPageClient from "./BlogPageClient";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Blog",
   description: "Read articles, tutorials, and insights about web development, programming, and technology by Sayantan Kar.",

@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import { getProjects } from "@/lib/data";
 import ProjectsPageClient from "./ProjectsPageClient";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Projects",
   description: "Explore my portfolio of web development projects including full-stack applications, APIs, and more.",
