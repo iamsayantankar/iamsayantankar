@@ -1,21 +1,27 @@
 import mongoose from "mongoose";
 
-const APP_STATE = (process.env.APP_STATE || "prod").toLowerCase();
 const VALID_STATES = ["dev", "local", "prod"] as const;
+type AppState = (typeof VALID_STATES)[number];
 
-if (!VALID_STATES.includes(APP_STATE as (typeof VALID_STATES)[number])) {
-  throw new Error(
-    `Invalid APP_STATE "${APP_STATE}". Must be one of: ${VALID_STATES.join(", ")}`
-  );
-}
+function resolveMongoUri(): string {
+  const appState = (process.env.APP_STATE || "prod").toLowerCase();
 
-const URI_KEY = `MONGODB_URI_${APP_STATE.toUpperCase()}`;
-const MONGODB_URI = process.env[URI_KEY] || process.env.MONGODB_URI;
+  if (!VALID_STATES.includes(appState as AppState)) {
+    throw new Error(
+      `Invalid APP_STATE "${appState}". Must be one of: ${VALID_STATES.join(", ")}`
+    );
+  }
 
-if (!MONGODB_URI) {
-  throw new Error(
-    `Missing ${URI_KEY} (APP_STATE=${APP_STATE}). Define it in .env or .env.local.`
-  );
+  const uriKey = `MONGODB_URI_${appState.toUpperCase()}`;
+  const uri = process.env[uriKey] || process.env.MONGODB_URI;
+
+  if (!uri) {
+    throw new Error(
+      `Missing ${uriKey} (APP_STATE=${appState}). Define it in .env or .env.local.`
+    );
+  }
+
+  return uri;
 }
 
 interface MongooseCache {
@@ -40,10 +46,11 @@ export async function connectDB() {
   }
 
   if (!cached.promise) {
+    const uri = resolveMongoUri();
     const opts = {
       bufferCommands: false,
     };
-    cached.promise = mongoose.connect(MONGODB_URI!, opts).then((mongoose) => {
+    cached.promise = mongoose.connect(uri, opts).then((mongoose) => {
       return mongoose;
     });
   }
