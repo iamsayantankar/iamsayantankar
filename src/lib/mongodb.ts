@@ -1,9 +1,21 @@
 import mongoose from "mongoose";
 
-const MONGODB_URI = process.env.MONGODB_URI!;
+const APP_STATE = (process.env.APP_STATE || "prod").toLowerCase();
+const VALID_STATES = ["dev", "local", "prod"] as const;
+
+if (!VALID_STATES.includes(APP_STATE as (typeof VALID_STATES)[number])) {
+  throw new Error(
+    `Invalid APP_STATE "${APP_STATE}". Must be one of: ${VALID_STATES.join(", ")}`
+  );
+}
+
+const URI_KEY = `MONGODB_URI_${APP_STATE.toUpperCase()}`;
+const MONGODB_URI = process.env[URI_KEY] || process.env.MONGODB_URI;
 
 if (!MONGODB_URI) {
-  throw new Error("Please define the MONGODB_URI environment variable");
+  throw new Error(
+    `Missing ${URI_KEY} (APP_STATE=${APP_STATE}). Define it in .env or .env.local.`
+  );
 }
 
 interface MongooseCache {
@@ -31,7 +43,7 @@ export async function connectDB() {
     const opts = {
       bufferCommands: false,
     };
-    cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
+    cached.promise = mongoose.connect(MONGODB_URI!, opts).then((mongoose) => {
       return mongoose;
     });
   }
