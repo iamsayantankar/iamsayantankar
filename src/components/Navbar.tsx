@@ -33,7 +33,7 @@ export default function Navbar() {
 
   useEffect(() => setMobileOpen(false), [pathname]);
 
-  if (pathname?.startsWith("/admin")) return null;
+  if (pathname?.startsWith("/admin") || pathname?.startsWith("/maintenance")) return null;
 
   return (
     <motion.nav
@@ -48,11 +48,11 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center text-white font-bold text-lg group-hover:shadow-lg group-hover:shadow-primary-500/30 transition-all">
+          <Link href="/" className="flex items-center gap-2 group shrink-0">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center text-white font-bold text-base sm:text-lg group-hover:shadow-lg group-hover:shadow-primary-500/30 transition-all">
               SK
             </div>
-            <span className="font-bold text-xl text-gray-900 dark:text-white hidden sm:block">
+            <span className="font-bold text-lg sm:text-xl text-gray-900 dark:text-white">
               Sayantan
             </span>
           </Link>
@@ -74,7 +74,7 @@ export default function Navbar() {
             ))}
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1 sm:gap-2 shrink-0">
             {mounted && (
               <button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
@@ -91,6 +91,8 @@ export default function Navbar() {
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className="lg:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileOpen}
             >
               {mobileOpen ? (
                 <HiXMark className="w-6 h-6 text-gray-700 dark:text-gray-200" />

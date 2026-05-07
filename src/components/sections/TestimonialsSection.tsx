@@ -7,12 +7,12 @@ interface Testimonial { _id: string; name: string; company: string; position: st
 
 export default function TestimonialsSection({ data }: { data: Testimonial[] }) {
   return (
-    <section id="testimonials" className="py-20">
+    <section id="testimonials" className="py-14 sm:py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading title="What Clients Say" subtitle="Feedback from people I've worked with" />
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {data.map((t, i) => (
-            <motion.div key={t._id} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="p-6 rounded-2xl bg-white dark:bg-white/[0.04] border border-gray-200/50 dark:border-white/[0.06] hover:shadow-lg transition-shadow">
+            <motion.div key={t._id} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="p-5 sm:p-6 rounded-2xl bg-white dark:bg-white/[0.04] border border-gray-200/50 dark:border-white/[0.06] hover:shadow-lg transition-shadow">
               <div className="text-4xl text-primary-500/20 font-serif mb-3">&ldquo;</div>
               <p className="text-gray-600 dark:text-gray-300 text-sm italic leading-relaxed mb-5">{t.feedback}</p>
               <div className="flex gap-1 mb-4">{[1,2,3,4,5].map(j => (<HiStar key={j} className={`w-4 h-4 ${j <= t.rating ? "text-yellow-400" : "text-gray-300 dark:text-gray-700"}`} />))}</div>

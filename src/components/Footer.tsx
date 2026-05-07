@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { FaGithub, FaLinkedin, FaTwitter, FaInstagram } from "react-icons/fa";
 
 const quickLinks = [
@@ -19,14 +20,17 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
+  if (pathname?.startsWith("/admin") || pathname?.startsWith("/maintenance")) return null;
+
   return (
     <footer className="relative bg-gray-50 dark:bg-gray-950 border-t border-gray-200 dark:border-white/5">
       <div className="h-1 bg-gradient-to-r from-primary-500 via-purple-500 to-pink-500" />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          <div className="sm:col-span-2 md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center text-white font-bold">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center text-white font-bold shrink-0">
                 SK
               </div>
               <span className="font-bold text-xl text-gray-900 dark:text-white">Sayantan Kar</span>
@@ -54,7 +58,7 @@ export default function Footer() {
 
           <div>
             <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Connect</h3>
-            <div className="flex gap-3">
+            <div className="flex flex-wrap gap-3">
               {socialLinks.map((link) => (
                 <a
                   key={link.label}
@@ -68,7 +72,7 @@ export default function Footer() {
                 </a>
               ))}
             </div>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mt-4">hello@sayantankar.dev</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-4 break-all">hello@sayantankar.dev</p>
           </div>
         </div>
 

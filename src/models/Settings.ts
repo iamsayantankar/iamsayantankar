@@ -28,6 +28,10 @@ export interface ISettings extends Document {
   seoDescription?: string;
   seoKeywords?: string[];
   googleAnalytics?: string;
+  maintenanceMode: boolean;
+  maintenanceTitle?: string;
+  maintenanceMessage?: string;
+  maintenanceEndDate?: Date | null;
   updatedAt: Date;
 }
 
@@ -60,6 +64,13 @@ const SettingsSchema = new Schema<ISettings>(
     seoDescription: { type: String },
     seoKeywords: [{ type: String }],
     googleAnalytics: { type: String },
+    maintenanceMode: { type: Boolean, default: false },
+    maintenanceTitle: { type: String, default: "We'll Be Back Soon!" },
+    maintenanceMessage: {
+      type: String,
+      default: "We're performing scheduled maintenance to improve your experience. We'll be back shortly.",
+    },
+    maintenanceEndDate: { type: Date, default: null },
   },
   { timestamps: true }
 );

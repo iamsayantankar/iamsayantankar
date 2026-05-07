@@ -43,9 +43,9 @@ export default function EditEducation() {
 
   return (
     <div>
-      <div className="flex items-center gap-3 mb-6">
-        <Link href="/admin/education" className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"><HiArrowLeft className="w-5 h-5 text-gray-500" /></Link>
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Edit Education</h2>
+      <div className="flex items-center gap-3 mb-5 sm:mb-6">
+        <Link href="/admin/education" aria-label="Back" className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 shrink-0"><HiArrowLeft className="w-5 h-5 text-gray-500" /></Link>
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white truncate">Edit Education</h2>
       </div>
       <form onSubmit={handleSubmit} className="max-w-3xl space-y-5">
         <div><label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Institution *</label><input type="text" value={form.institution} onChange={e => setForm({...form, institution: e.target.value})} className={cls} required /></div>
@@ -63,9 +63,9 @@ export default function EditEducation() {
           <div><label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Grade / CGPA</label><input type="text" value={form.grade} onChange={e => setForm({...form, grade: e.target.value})} className={cls} /></div>
           <div><label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Order</label><input type="number" value={form.order} onChange={e => setForm({...form, order: parseInt(e.target.value) || 0})} className={cls} /></div>
         </div>
-        <div className="flex gap-3 pt-2">
-          <button type="submit" disabled={loading} className="px-6 py-2.5 rounded-lg bg-primary-600 text-white text-sm font-medium hover:bg-primary-700 transition-colors disabled:opacity-50">{loading ? "Saving..." : "Save Changes"}</button>
-          <Link href="/admin/education" className="px-6 py-2.5 rounded-lg border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">Cancel</Link>
+        <div className="flex flex-wrap gap-3 pt-2">
+          <button type="submit" disabled={loading} className="px-5 sm:px-6 py-2.5 rounded-lg bg-primary-600 text-white text-sm font-medium hover:bg-primary-700 transition-colors disabled:opacity-50">{loading ? "Saving..." : "Save Changes"}</button>
+          <Link href="/admin/education" className="px-5 sm:px-6 py-2.5 rounded-lg border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">Cancel</Link>
         </div>
       </form>
     </div>

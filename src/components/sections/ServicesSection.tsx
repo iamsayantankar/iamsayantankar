@@ -20,10 +20,10 @@ const gradients = ["from-blue-500 to-cyan-500", "from-purple-500 to-pink-500", "
 
 export default function ServicesSection({ services }: { services: Service[] }) {
   return (
-    <section id="services" className="py-20 bg-gray-50/50 dark:bg-gray-900/30">
+    <section id="services" className="py-14 sm:py-20 bg-gray-50/50 dark:bg-gray-900/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading title="Services I Offer" subtitle="Comprehensive solutions to bring your vision to life" />
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {services.map((service, i) => {
             const Icon = iconMap[service.icon] || HiCodeBracket;
             return (

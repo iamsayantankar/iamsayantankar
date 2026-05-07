@@ -24,9 +24,9 @@ export default function AdminExperience() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Experience</h2>
-        <Link href="/admin/experience/new" className="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary-600 text-white text-sm font-medium hover:bg-primary-700 transition-colors"><HiPlus className="w-4 h-4" /> Add New</Link>
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-5 sm:mb-6">
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">Experience</h2>
+        <Link href="/admin/experience/new" className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg bg-primary-600 text-white text-sm font-medium hover:bg-primary-700 transition-colors"><HiPlus className="w-4 h-4" /> Add New</Link>
       </div>
       <div className="rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 overflow-hidden">
         <div className="overflow-x-auto">

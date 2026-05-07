@@ -15,11 +15,11 @@ export default function SkillsPageClient({ skills }: { skills: Skill[] }) {
 
   return (
     <PageTransition>
-      <section className="pt-32 pb-20">
+      <section className="pt-24 sm:pt-32 pb-14 sm:pb-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16"><h1 className="text-4xl sm:text-5xl font-bold gradient-text mb-4">Skills & Expertise</h1><p className="text-gray-500 dark:text-gray-400">Technologies I work with</p></div>
-          <div className="flex flex-wrap justify-center gap-2 mb-10">
-            {cats.map(c => (<button key={c} onClick={() => setActive(c)} className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${active === c ? "bg-gradient-to-r from-primary-600 to-purple-600 text-white shadow-lg" : "bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400"}`}>{c}</button>))}
+          <div className="text-center mb-10 sm:mb-16"><h1 className="text-3xl sm:text-5xl font-bold gradient-text mb-3 sm:mb-4">Skills & Expertise</h1><p className="text-gray-500 dark:text-gray-400 text-sm sm:text-base">Technologies I work with</p></div>
+          <div className="flex flex-wrap justify-center gap-2 mb-8 sm:mb-10">
+            {cats.map(c => (<button key={c} onClick={() => setActive(c)} className={`px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-medium transition-all ${active === c ? "bg-gradient-to-r from-primary-600 to-purple-600 text-white shadow-lg" : "bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400"}`}>{c}</button>))}
           </div>
           <div className="space-y-5">
             {filtered.map((skill, i) => (

@@ -19,10 +19,10 @@ const gradients = ["from-indigo-600 to-purple-600", "from-blue-600 to-cyan-600",
 
 export default function BlogPreview({ blogs }: { blogs: Blog[] }) {
   return (
-    <section id="blog" className="py-20">
+    <section id="blog" className="py-14 sm:py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading title="Latest Articles" subtitle="Thoughts, tutorials, and insights" />
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {blogs.map((blog, i) => (
             <motion.div
               key={blog._id}

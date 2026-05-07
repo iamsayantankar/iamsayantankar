@@ -17,17 +17,17 @@ export default function AdminDashboard() {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Welcome back!</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">Welcome back!</h2>
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
         {stats.map(s => (
-          <div key={s.label} className="p-5 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 shadow-sm">
-            <div className="flex items-center justify-between mb-3"><div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${s.color} flex items-center justify-center text-white`}><s.icon className="w-5 h-5" /></div></div>
-            <div className="text-2xl font-bold text-gray-900 dark:text-white">{s.value}{s.suffix || ""}</div>
-            <p className="text-sm text-gray-500">{s.label}</p>
+          <div key={s.label} className="p-4 sm:p-5 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 shadow-sm">
+            <div className="flex items-center justify-between mb-3"><div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-gradient-to-br ${s.color} flex items-center justify-center text-white`}><s.icon className="w-5 h-5" /></div></div>
+            <div className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white truncate">{s.value}{s.suffix || ""}</div>
+            <p className="text-xs sm:text-sm text-gray-500">{s.label}</p>
           </div>
         ))}
       </div>
-      <div className="grid lg:grid-cols-2 gap-6">
+      <div className="grid lg:grid-cols-2 gap-4 sm:gap-6">
         <div className="rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 p-5">
           <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Recent Messages</h3>
           <div className="space-y-3">{data?.recentMessages?.map(m => (

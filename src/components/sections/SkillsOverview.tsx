@@ -15,10 +15,10 @@ const colors = ["from-blue-500 to-cyan-500", "from-purple-500 to-pink-500", "fro
 
 export default function SkillsOverview({ skills }: { skills: Skill[] }) {
   return (
-    <section id="skills-overview" className="py-20 relative">
+    <section id="skills-overview" className="py-14 sm:py-20 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading title="Skills & Technologies" subtitle="Technologies I work with to bring ideas to life" />
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
           {skills.map((skill, i) => (
             <motion.div
               key={skill._id}
@@ -27,7 +27,7 @@ export default function SkillsOverview({ skills }: { skills: Skill[] }) {
               viewport={{ once: true }}
               transition={{ delay: i * 0.05 }}
               whileHover={{ scale: 1.08, y: -4 }}
-              className="flex flex-col items-center gap-3 p-5 rounded-2xl bg-white/60 dark:bg-white/[0.04] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.06] hover:shadow-lg hover:shadow-primary-500/10 transition-all duration-300 cursor-default"
+              className="flex flex-col items-center gap-2 sm:gap-3 p-3 sm:p-5 rounded-2xl bg-white/60 dark:bg-white/[0.04] backdrop-blur-sm border border-gray-200/50 dark:border-white/[0.06] hover:shadow-lg hover:shadow-primary-500/10 transition-all duration-300 cursor-default"
             >
               <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${colors[i % colors.length]} flex items-center justify-center text-white font-bold text-sm shadow-lg`}>
                 {skill.name.substring(0, 2)}

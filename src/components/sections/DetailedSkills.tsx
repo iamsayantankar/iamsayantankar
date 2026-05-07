@@ -11,11 +11,11 @@ export default function DetailedSkills({ skills }: { skills: Skill[] }) {
   const [active, setActive] = useState(cats[0] || "Frontend");
 
   return (
-    <section id="detailed-skills" className="py-20 bg-gray-50/50 dark:bg-gray-900/30">
+    <section id="detailed-skills" className="py-14 sm:py-20 bg-gray-50/50 dark:bg-gray-900/30">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading title="Technical Expertise" subtitle="Detailed breakdown of my skills" />
-        <div className="flex flex-wrap justify-center gap-2 mb-10">
-          {cats.map(c => (<button key={c} onClick={() => setActive(c)} className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${active === c ? "bg-gradient-to-r from-primary-600 to-purple-600 text-white shadow-lg" : "bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400"}`}>{c}</button>))}
+        <div className="flex flex-wrap justify-center gap-2 mb-8 sm:mb-10">
+          {cats.map(c => (<button key={c} onClick={() => setActive(c)} className={`px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-medium transition-all ${active === c ? "bg-gradient-to-r from-primary-600 to-purple-600 text-white shadow-lg" : "bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400"}`}>{c}</button>))}
         </div>
         <div className="space-y-5">
           {skills.filter(s => s.category === active).map((skill, i) => (

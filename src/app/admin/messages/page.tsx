@@ -35,13 +35,13 @@ export default function AdminMessages() {
 
   return (
     <div>
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Messages</h2>
-        <div className="relative"><HiMagnifyingGlass className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" /><input type="text" placeholder="Search..." value={search} onChange={e => setSearch(e.target.value)} className="pl-9 pr-4 py-2 rounded-lg bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-sm text-gray-900 dark:text-white outline-none focus:ring-2 focus:ring-primary-500" /></div>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 mb-5 sm:mb-6">
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">Messages</h2>
+        <div className="relative w-full sm:w-auto"><HiMagnifyingGlass className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" /><input type="text" placeholder="Search..." value={search} onChange={e => setSearch(e.target.value)} className="w-full pl-9 pr-4 py-2 rounded-lg bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-sm text-gray-900 dark:text-white outline-none focus:ring-2 focus:ring-primary-500" /></div>
       </div>
-      <div className="grid lg:grid-cols-5 gap-6">
+      <div className="grid lg:grid-cols-5 gap-4 sm:gap-6">
         <div className="lg:col-span-2 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 overflow-hidden">
-          <div className="divide-y divide-gray-100 dark:divide-gray-800 max-h-[600px] overflow-y-auto">
+          <div className="divide-y divide-gray-100 dark:divide-gray-800 max-h-[400px] sm:max-h-[600px] overflow-y-auto">
             {loading ? <div className="px-4 py-8 text-center text-gray-500">Loading...</div> : filtered.length === 0 ? <div className="px-4 py-8 text-center text-gray-500">No messages</div> : filtered.map(m => (
               <button key={m._id} onClick={() => markRead(m)} className={`w-full text-left px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors ${selected?._id === m._id ? "bg-primary-50 dark:bg-primary-500/5" : ""}`}>
                 <div className="flex items-start gap-3">
@@ -59,28 +59,28 @@ export default function AdminMessages() {
             ))}
           </div>
         </div>
-        <div className="lg:col-span-3 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 p-6">
+        <div className="lg:col-span-3 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 p-4 sm:p-6">
           {selected ? (
             <div>
-              <div className="flex items-start justify-between mb-6">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary-500 to-purple-600 flex items-center justify-center text-white font-bold">{selected.name.charAt(0).toUpperCase()}</div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 dark:text-white">{selected.name}</h3>
-                    <p className="text-sm text-gray-500">{selected.email}</p>
-                    {selected.phone && <p className="text-sm text-gray-500">{selected.phone}</p>}
+              <div className="flex flex-wrap items-start justify-between gap-3 mb-5 sm:mb-6">
+                <div className="flex items-center gap-3 min-w-0 flex-1">
+                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-primary-500 to-purple-600 flex items-center justify-center text-white font-bold shrink-0">{selected.name.charAt(0).toUpperCase()}</div>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="font-semibold text-gray-900 dark:text-white truncate">{selected.name}</h3>
+                    <p className="text-sm text-gray-500 break-all">{selected.email}</p>
+                    {selected.phone && <p className="text-sm text-gray-500 break-all">{selected.phone}</p>}
                   </div>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 shrink-0">
                   <span className={`flex items-center gap-1 px-2 py-1 rounded-full text-xs ${selected.read ? "text-gray-500" : "text-primary-500 bg-primary-50 dark:bg-primary-500/10"}`}>{selected.read ? <><HiEnvelopeOpen className="w-3.5 h-3.5" /> Read</> : <><HiEnvelope className="w-3.5 h-3.5" /> Unread</>}</span>
-                  <button onClick={() => handleDelete(selected._id)} className="p-1.5 rounded-lg hover:bg-red-50 dark:hover:bg-red-500/10 text-gray-400 hover:text-red-500"><HiTrash className="w-4 h-4" /></button>
+                  <button onClick={() => handleDelete(selected._id)} aria-label="Delete message" className="p-1.5 rounded-lg hover:bg-red-50 dark:hover:bg-red-500/10 text-gray-400 hover:text-red-500"><HiTrash className="w-4 h-4" /></button>
                 </div>
               </div>
               <div className="text-xs text-gray-400 mb-4">{new Date(selected.createdAt).toLocaleString()}</div>
-              <div className="p-4 rounded-lg bg-gray-50 dark:bg-gray-800/50"><p className="text-gray-700 dark:text-gray-300 whitespace-pre-wrap">{selected.message}</p></div>
+              <div className="p-4 rounded-lg bg-gray-50 dark:bg-gray-800/50"><p className="text-gray-700 dark:text-gray-300 whitespace-pre-wrap break-words">{selected.message}</p></div>
             </div>
           ) : (
-            <div className="flex flex-col items-center justify-center h-64 text-gray-400"><HiEnvelope className="w-12 h-12 mb-3" /><p className="text-sm">Select a message to read</p></div>
+            <div className="hidden lg:flex flex-col items-center justify-center h-64 text-gray-400"><HiEnvelope className="w-12 h-12 mb-3" /><p className="text-sm">Select a message to read</p></div>
           )}
         </div>
       </div>
