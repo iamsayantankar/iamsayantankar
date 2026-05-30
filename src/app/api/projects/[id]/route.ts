@@ -22,7 +22,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
 
     await connectDB();
     const body = await req.json();
-    const project = await Project.findByIdAndUpdate(params.id, body, { new: true });
+    const project = await Project.findByIdAndUpdate(params.id, body, { returnDocument: "after" });
     if (!project) return NextResponse.json({ error: "Not found" }, { status: 404 });
     return NextResponse.json(project);
   } catch (error) {

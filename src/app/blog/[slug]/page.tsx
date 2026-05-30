@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { getBlogBySlug, getBlogs } from "@/lib/data";
+import { getBlogBySlug, getBlogs, incrementBlogView } from "@/lib/data";
 import { notFound } from "next/navigation";
 import BlogPostClient from "./BlogPostClient";
 
@@ -38,5 +38,6 @@ export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
   const blog = await getBlogBySlug(slug);
   if (!blog) notFound();
+  await incrementBlogView(slug);
   return <BlogPostClient blog={blog} />;
 }

@@ -35,13 +35,20 @@ export async function getBlogs(limit = 20, query: Record<string, unknown> = {}) 
 export async function getBlogBySlug(slug: string) {
   return safeFetch(async () => {
     await connectDB();
-    const blog = await Blog.findOneAndUpdate(
-      { slug, status: "published" },
-      { $inc: { views: 1 } },
-      { new: true }
-    ).lean();
+    const blog = await Blog.findOne({ slug, status: "published" }).lean();
     return blog ? toPlain(blog) : null;
   }, null as unknown);
+}
+
+// Fire-and-forget view increment. Kept separate from getBlogBySlug so
+// generateMetadata + the page component don't double-count a single visit.
+export async function incrementBlogView(slug: string) {
+  try {
+    await connectDB();
+    await Blog.updateOne({ slug, status: "published" }, { $inc: { views: 1 } });
+  } catch (err) {
+    console.warn("[data] incrementBlogView", (err as Error).message);
+  }
 }
 
 export async function getProjects(limit = 50) {

@@ -27,7 +27,7 @@ export async function PUT(req: NextRequest) {
     if (!settings) {
       settings = await Settings.create(body);
     } else {
-      settings = await Settings.findByIdAndUpdate(settings._id, body, { new: true });
+      settings = await Settings.findByIdAndUpdate(settings._id, body, { returnDocument: "after" });
     }
     return NextResponse.json(settings);
   } catch (error) {

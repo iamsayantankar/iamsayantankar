@@ -15,7 +15,7 @@ export async function GET(_req: NextRequest, { params }: { params: { slug: strin
       blog = await Blog.findOneAndUpdate(
         { slug: params.slug },
         { $inc: { views: 1 } },
-        { new: true }
+        { returnDocument: "after" }
       );
     }
     if (!blog) return NextResponse.json({ error: "Not found" }, { status: 404 });
@@ -34,9 +34,9 @@ export async function PUT(req: NextRequest, { params }: { params: { slug: string
     const body = await req.json();
     let blog;
     if (mongoose.Types.ObjectId.isValid(params.slug)) {
-      blog = await Blog.findByIdAndUpdate(params.slug, body, { new: true });
+      blog = await Blog.findByIdAndUpdate(params.slug, body, { returnDocument: "after" });
     } else {
-      blog = await Blog.findOneAndUpdate({ slug: params.slug }, body, { new: true });
+      blog = await Blog.findOneAndUpdate({ slug: params.slug }, body, { returnDocument: "after" });
     }
     if (!blog) return NextResponse.json({ error: "Not found" }, { status: 404 });
     return NextResponse.json(blog);

@@ -10,7 +10,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
     if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     await connectDB();
     const body = await req.json();
-    const skill = await Skill.findByIdAndUpdate(params.id, body, { new: true });
+    const skill = await Skill.findByIdAndUpdate(params.id, body, { returnDocument: "after" });
     if (!skill) return NextResponse.json({ error: "Not found" }, { status: 404 });
     return NextResponse.json(skill);
   } catch (error) {
